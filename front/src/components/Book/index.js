@@ -8,7 +8,8 @@ import {
 import BookModal from '../BookModal';
 
 const Book = ({id, author, cover, currency, pages, price, title }) => {
-  const [isOpen, setIsOpen] = useState(false);
+
+  const bookQuantity = JSON.parse(localStorage.getItem(id));
 
   const getQuantity = (min, max) => {
     min = Math.ceil(min);
@@ -16,7 +17,8 @@ const Book = ({id, author, cover, currency, pages, price, title }) => {
     return Math.floor(Math.random() * (max - min) + min);
   };
 
-  const availableQuantity = getQuantity(0, 11);
+  const [isOpen, setIsOpen] = useState(false);
+  const [availableQuantity, setAvailableQuantity] = useState(bookQuantity || getQuantity(0,11))
 
   function toggleModal(e) {
     setIsOpen(!isOpen);
@@ -39,8 +41,10 @@ const Book = ({id, author, cover, currency, pages, price, title }) => {
         pages={pages}
         price={price}
         availableQuantity={availableQuantity}
+        setAvailableQuantity={setAvailableQuantity}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
+        getQuantity={getQuantity}
       />
     </>
   );

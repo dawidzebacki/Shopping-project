@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Modal from "styled-react-modal";
 
 export const StyledModal = Modal.styled`
-  width: 80em;
+  width: 68em;
   height: 40em;
   display: flex;
   align-items: center;
@@ -11,11 +11,21 @@ export const StyledModal = Modal.styled`
   background-color: ${({ theme }) => theme.colors.bright};
 `;
 
+export const StyledLine = styled.hr`
+  width: 100%;
+  margin: 2em 0 2em 0;
+  height: 2px;
+  color: transparent;
+  background-color: ${({ theme }) => theme.colors.groupBackground};
+`;
+
 export const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 36.75em;
+  max-width: 30em;
+  text-align:center;
 `;
 
 export const ModalCover = styled.img`
@@ -26,10 +36,12 @@ export const ModalCover = styled.img`
 
 export const ModalTitle = styled.h1`
   font-size: 1.2em;
+  color: ${({ theme }) => theme.colors.groupBackgroundFocus};
 `;
 
 export const ModalAuthor = styled.h2`
   font-size: 1em;
+  color: ${({ theme }) => theme.colors.groupBackgroundFocus};
 `;
 
 export const TextGroup = styled.div`
@@ -64,7 +76,8 @@ export const InputField = styled.input`
 export const InputGroup = styled.div`
   position: relative;
   display: flex;
-  width: 100%;
+  width: 75%;
+  margin: 0 0 1em 0;
   & > span,
   input {
     white-space: nowrap;
@@ -112,6 +125,7 @@ export const InputGroup = styled.div`
 export const ModalText = styled.p`
   font-size: 0.9em;
   margin: 0 0.5em 0 0.5em;
+  color: ${({ theme }) => theme.colors.groupBackgroundFocus};
 `;
 
 export const ModalButton = styled.button`
@@ -119,7 +133,36 @@ export const ModalButton = styled.button`
   font-size: 1.2em;
   top: 5px;
   right: 0;
+  color: ${({ theme }) => theme.colors.groupBorder};
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.groupBackgroundFocus};
+  }
 `;
+
+export const AddToCartButton = styled.button`
+  border: 1px solid ${({ theme }) => theme.colors.groupBorder};
+  border-radius: 6px;
+  height: 2em;
+  color: ${({ theme }) => theme.colors.groupColor};
+  background: ${({ theme }) => theme.colors.groupBackground};
+  transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.colors.groupColorFocus};
+    background: ${({ theme }) => theme.colors.groupBackgroundFocus};
+    border-color: ${({ theme }) => theme.colors.groupBorderFocus};
+  }
+`;
+
+export const Error = styled.p`
+  color: red;
+`
+
+export const Success = styled.p`
+  color: limegreen;
+`
+
