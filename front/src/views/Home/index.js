@@ -2,7 +2,7 @@ import React from "react";
 import { useShopContext } from "../../api/context";
 
 import Book from "../../components/Book";
-import { Wrapper } from "./styles";
+import { Wrapper, WrapperButtons, Button } from "./styles";
 
 const Home = () => {
   const { books, actualPage, allPages, setActualPage } = useShopContext();
@@ -35,12 +35,14 @@ const Home = () => {
         })}
       </Wrapper>
 
-      <button onClick={previousPage} disabled={actualPage <= 1}>
-        prev page
-      </button>
-      <button onClick={nextPage} disabled={actualPage >= allPages}>
-        next page
-      </button>
+      <WrapperButtons>
+        <Button onClick={previousPage} disabled={actualPage <= 1}>
+          Prev page
+        </Button>
+        <Button onClick={nextPage} disabled={actualPage >= allPages}>
+          Next page
+        </Button>
+      </WrapperButtons>
     </>
   );
 };
