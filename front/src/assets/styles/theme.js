@@ -3,7 +3,6 @@ const theme = {
     bright: "#fff",
     dark: "#000",
     gray: "#ccc",
-	mainBg: "#F8F8F8",
 	
     inputColor: "#99A3BA",
     inputBorder: "#CDD9ED",
