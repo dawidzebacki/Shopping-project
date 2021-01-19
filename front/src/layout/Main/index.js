@@ -31,7 +31,7 @@ const Layout = () => {
     if (books.length === 0) {
       setLoadingData("error");
     } else setLoadingData("false");
-  }, 5000);
+  }, 15000);
 
   const calculatePages = (recordsPerPage, totalRecords) => {
     return Math.ceil(totalRecords / recordsPerPage);
