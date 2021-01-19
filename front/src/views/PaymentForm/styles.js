@@ -1,17 +1,18 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-	min-height: 95vh;
-	display: flex;
-`
+  min-height: 95vh;
+  display: flex;
+`;
 
 export const Wrapper = styled.div`
-	max-width: 1360px;
+  width: 480px;
   height: 90vh;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
-	margin: auto;
+  margin: auto;
 `;
 
 export const InputField = styled.input`
@@ -73,14 +74,14 @@ export const InputGroup = styled.div`
     font-size: 14px;
     line-height: 25px;
     color: ${({ theme }) => theme.colors.groupColor};
-    background: ${({ theme }) => theme.colors.groupBackground};
+    background-color: ${({ theme }) => theme.colors.groupBackground};
     border: 1px solid ${({ theme }) => theme.colors.groupBorder};
-    transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
   }
   &:focus-within {
     & > span {
       color: ${({ theme }) => theme.colors.groupColorFocus};
-      background: ${({ theme }) => theme.colors.groupBackgroundFocus};
+      background-color: ${({ theme }) => theme.colors.groupBackgroundFocus};
       border-color: ${({ theme }) => theme.colors.groupBorderFocus};
     }
   }
@@ -92,17 +93,25 @@ export const SendButton = styled.button`
   height: 2em;
   margin: 0 0 0 0.5em;
   color: ${({ theme }) => theme.colors.groupColor};
-  background: ${({ theme }) => theme.colors.groupBackground};
-  transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+  background-color: ${({ theme }) => theme.colors.groupBackground};
+  transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
   float: right;
   cursor: pointer;
   &:hover {
     color: ${({ theme }) => theme.colors.groupColorFocus};
-    background: ${({ theme }) => theme.colors.groupBackgroundFocus};
+    background-color: ${({ theme }) => theme.colors.groupBackgroundFocus};
     border-color: ${({ theme }) => theme.colors.groupBorderFocus};
+  }&:disabled {
+    cursor: not-allowed;
+    &:hover {
+      color: ${({ theme }) => theme.colors.groupColor};
+      background-color: ${({ theme }) => theme.colors.groupBackground};
+      border-color: ${({ theme }) => theme.colors.groupBorder};
+    }
   }
 `;
 
-export const StyledLink = styled.a`
-  text-decoration: none;
-`
+export const StyledForm = styled.form`
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+`;
