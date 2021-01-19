@@ -37,7 +37,7 @@ const Layout = () => {
     return Math.ceil(totalRecords / recordsPerPage);
   };
 
-  const API_URL = `https://young-springs-95441.herokuapp.com/api/`;
+  const API_URL = `https://localhost:30001/api/`;
 
   const fetchData = async () => {
     const response = await fetch(`${API_URL}book?page=${actualPage}`);
