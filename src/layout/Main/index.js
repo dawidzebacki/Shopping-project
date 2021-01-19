@@ -37,10 +37,10 @@ const Layout = () => {
     return Math.ceil(totalRecords / recordsPerPage);
   };
 
-  // const API_URL = `https://localhost:3001/api/`;
+  const API_URL = `https://young-springs-95441.herokuapp.com/api`;
 
   const fetchData = async () => {
-    const response = await fetch(`/book?page=${actualPage}`);
+    const response = await fetch(`${API_URL}/book?page=${actualPage}`);
     const responseData = await response.json();
     console.info("Pobrano dane:", responseData);
     setBooks(responseData.data);
@@ -54,7 +54,7 @@ const Layout = () => {
   };
 
   const postData = async (data = {}) => {
-    const response = await fetch(`/order`, {
+    const response = await fetch(`${API_URL}/order`, {
       method: "POST",
       mode: "cors",
       credentials: "same-origin",
