@@ -2,10 +2,19 @@ import React from "react";
 import { useShopContext } from "../../api/context";
 
 import Book from "../../components/Book";
-import { Wrapper, WrapperButtons, Button } from "./styles";
+import { MainTitle } from "../../components/StyledComponents/styles";
+import { Container, Wrapper, WrapperButtons, Button } from "./styles";
 
 const Home = () => {
-  const { books, actualPage, allPages, setActualPage } = useShopContext();
+  const {
+    books,
+    actualPage,
+    allPages,
+    setActualPage,
+    loadingData,
+    booksInCart,
+    setBooksInCart,
+  } = useShopContext();
 
   const nextPage = () => {
     setActualPage(actualPage + 1);
@@ -16,7 +25,8 @@ const Home = () => {
   };
 
   return (
-    <>
+    <Container>
+      <MainTitle>Lista książek</MainTitle>
       <Wrapper>
         {books.map((book) => {
           const { id, author, cover_url, currency, pages, price, title } = book;
@@ -30,9 +40,17 @@ const Home = () => {
               pages={pages}
               price={price}
               title={title}
+              booksInCart={booksInCart}
+              setBooksInCart={setBooksInCart}
             />
           );
         })}
+        {books.length === 0 && loadingData === "true" && (
+          <MainTitle>Ładowanie danych...</MainTitle>
+        )}
+        {books.length === 0 && loadingData === "error" && (
+          <MainTitle>Błąd w ładowaniu danych.</MainTitle>
+        )}
       </Wrapper>
 
       <WrapperButtons>
@@ -43,7 +61,7 @@ const Home = () => {
           Next page
         </Button>
       </WrapperButtons>
-    </>
+    </Container>
   );
 };
 
