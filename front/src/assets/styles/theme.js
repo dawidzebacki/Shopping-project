@@ -8,13 +8,11 @@ const theme = {
     inputBorder: "#CDD9ED",
     inputBackground: "#fff",
     inputPlaceholder: "#CBD1DC",
-
     inputBorderFocus: "#275EFE",
 
     groupColor: "#99A3BA",
     groupBorder: "#CDD9ED",
     groupBackground: "#EEF4FF",
-
     groupColorFocus: "#fff",
     groupBorderFocus: "#275EFE",
     groupBackgroundFocus: "#678EFE",
