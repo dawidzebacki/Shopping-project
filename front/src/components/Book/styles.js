@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   text-align: center;
   border: 1px solid ${({ theme }) => theme.colors.groupBorder};
   max-width: 18.1em;
+  background-color: #fff;
 
   transition: transform 0.2s ease-in-out;
 
@@ -18,7 +19,6 @@ export const Wrapper = styled.div`
     cursor: pointer;
   }
 `;
-
 
 export const Cover = styled.img`
   width: 15em;

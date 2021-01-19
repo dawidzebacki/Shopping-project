@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
+  Error,
+  Success,
+  InputGroup,
+  InputField,
+} from "../StyledComponents/styles";
+import {
   StyledModal,
   StyledLine,
   ModalWrapper,
@@ -8,14 +14,11 @@ import {
   ModalAuthor,
   ModalButton,
   ModalText,
-  InputGroup,
-  InputField,
   TextGroup,
   AddToCartButton,
-  Error,
-  Success,
 } from "./styles";
-import { useShopContext } from "../../api/context";
+
+import { getCorrectVariety } from "../../utils";
 
 const BookModal = ({
   id,
@@ -29,9 +32,9 @@ const BookModal = ({
   setAvailableQuantity,
   isOpen,
   setIsOpen,
+  booksInCart,
+  setBooksInCart,
 }) => {
-  const { booksInCart, setBooksInCart } = useShopContext();
-
   const [booksQuantity, setBooksQuantity] = useState(0);
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
@@ -57,13 +60,13 @@ const BookModal = ({
     for (let i = 0; i < booksInCart.length; i++) {
       if (booksInCart[i]["id"] === bookObj.id) {
         booksInCart[i]["quantity"] += bookObj.quantity;
-        localStorage.setItem('books', JSON.stringify(booksInCart));
+        localStorage.setItem("books", JSON.stringify(booksInCart));
         return;
       }
     }
 
     setBooksInCart([...booksInCart, bookObj]);
-    localStorage.setItem('books', JSON.stringify([...booksInCart, bookObj]));
+    localStorage.setItem("books", JSON.stringify([...booksInCart, bookObj]));
   };
 
   const addToCart = () => {
@@ -75,7 +78,7 @@ const BookModal = ({
       setSuccess();
     } else if (booksQuantity <= 0 || !booksQuantity) {
       setError("Podaj liczbę większą niż 0.");
-      setSuccess(); 
+      setSuccess();
     } else if (booksQuantity % 1 !== 0) {
       setError("Podaj liczbę całkowitą.");
       setSuccess();
@@ -83,13 +86,17 @@ const BookModal = ({
       setError();
       setSuccess("Produkt został dodany do koszyka.");
       setAvailableQuantity(availableQuantity - booksQuantity);
-      localStorage.setItem(id, JSON.stringify(availableQuantity - booksQuantity));
+      localStorage.setItem(
+        id,
+        JSON.stringify(availableQuantity - booksQuantity)
+      );
       addBook(id);
     }
   };
 
   useEffect(() => {
     if (availableQuantity <= 0 && !success) setError("Produkt niedostępny.");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableQuantity]);
 
   return (
@@ -112,7 +119,8 @@ const BookModal = ({
               Cena za sztukę <br /> {price} {currency}
             </ModalText>
             <ModalText>
-              Dostępność <br /> {availableQuantity} sztuk
+              Dostępność <br /> {availableQuantity}{" "}
+              {getCorrectVariety(availableQuantity, "sztuka")}
             </ModalText>
           </TextGroup>
           <StyledLine />

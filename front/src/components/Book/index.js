@@ -1,14 +1,18 @@
-import React, { useState } from "react";
-import {
-  Wrapper,
-  Cover,
-  Title,
-  Author,
-} from "./styles";
-import BookModal from '../BookModal';
+import React, { useState, useEffect } from "react";
+import { Wrapper, Cover, Title, Author } from "./styles";
+import BookModal from "../BookModal";
 
-const Book = ({id, author, cover, currency, pages, price, title }) => {
-
+const Book = ({
+  id,
+  author,
+  cover,
+  currency,
+  pages,
+  price,
+  title,
+  booksInCart,
+  setBooksInCart,
+}) => {
   const bookQuantity = JSON.parse(localStorage.getItem(id));
 
   const getQuantity = (min, max) => {
@@ -18,11 +22,17 @@ const Book = ({id, author, cover, currency, pages, price, title }) => {
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  const [availableQuantity, setAvailableQuantity] = useState(bookQuantity || getQuantity(0,11))
+  const [availableQuantity, setAvailableQuantity] = useState(
+    getQuantity(0, 11)
+  );
 
-  function toggleModal(e) {
+  const toggleModal = () => {
     setIsOpen(!isOpen);
   }
+
+  useEffect(() => {
+    if (bookQuantity !== null) setAvailableQuantity(bookQuantity);
+  }, [bookQuantity]);
 
   return (
     <>
@@ -45,6 +55,8 @@ const Book = ({id, author, cover, currency, pages, price, title }) => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         getQuantity={getQuantity}
+        booksInCart={booksInCart}
+        setBooksInCart={setBooksInCart}
       />
     </>
   );
