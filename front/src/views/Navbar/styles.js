@@ -22,7 +22,10 @@ export const Wrapper = styled.div`
 export const StyledLink = styled.a`
 	text-decoration: none;
 	color: white;
-	font-size: 2em;
+	font-size: 1.5em;
 	padding: 0;
 	margin: 0.1em 0.5em 0 0.5em;
+	${({ theme }) => theme.mq.mobileLandscape} {
+    font-size: 2em;
+  }
 `

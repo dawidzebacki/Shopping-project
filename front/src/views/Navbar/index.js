@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
 
 import { Container, Wrapper, StyledLink } from "./styles";
